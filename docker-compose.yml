@@ -1,0 +1,47 @@
+version: "2"
+volumes:
+  static:
+services:
+  # 测试
+#  python:
+#    build: ./python
+#    volumes:
+#      - /Users/isea/Documents/learning/rabbitmq:/home/rabbitmq
+#      - /Users/isea/.virtualenvs:/root/.virtualenvs
+#  rabbitmq:
+#    build: ./rabbitmq
+#    hostname: "rabbit1"
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=admin
+#      - RABBITMQ_DEFAULT_PASS=password
+#      - RABBITMQ_DEFAULT_VHOST=my_vhost
+#    volumes:
+#      - /Users/isea/Documents/learning/rabbitmq:/Users/isea/Documents/learning/rabbitmq
+#      - /usr/local/etc/rabbitmq:/etc/rabbitmq
+#    ports:
+#      - "5672:5672"
+#      - "5671:5671"
+#      - "15672:15672"
+
+  web:
+    build: ./django
+    volumes:
+      - /Users/isea/Documents/learning/django/mysite:/mysite
+      - static:/mysite/static
+    ports:
+      - "8001:8001"
+
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - web
+    volumes:
+      - /Users/isea/Documents/learning/nginx:/etc/nginx
+      - static:/usr/local/nginx/static
+    ports:
+      - "9090:9090"
+      - "443:443"
+
+  
+  
+

@@ -1,0 +1,1 @@
+SHA1(data.txt)= dfed2bc970f4668fe81d33b1d8643d561db6f0ad
